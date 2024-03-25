@@ -28,10 +28,29 @@ const AlarmSetter = ({
     setMinute(minute);
   };
 
+  const createTodayWithTime = (hours: number, minutes: number) => {
+    const now = new Date();
+    now.setHours(hours, minutes, 0, 0);
+    return now;
+  };
+
   const setAlarm = () => {
-    const data = `${meridiem === '오후' ? +hour + 12 : hour} : ${minute}`;
+    const newHour = meridiem === '오후' ? +hour + 12 : hour;
+    const data = `${newHour} : ${minute}`;
+
+    const dateData = createTodayWithTime(+newHour, +minute);
     onSetAlarm(data);
     window.alert('알람이 설정되었습니다.');
+    if (window.ReactNativeWebView) {
+      window.ReactNativeWebView.postMessage(
+        JSON.stringify({
+          type: 'ALARM',
+          time: `${dateData}`,
+        }),
+      );
+    } else {
+      window.alert('모바일이 아닙니다.');
+    }
   };
 
   return (
