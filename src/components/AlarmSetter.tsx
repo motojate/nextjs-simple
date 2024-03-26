@@ -40,7 +40,6 @@ const AlarmSetter = ({
 
     const dateData = createTodayWithTime(+newHour, +minute);
     onSetAlarm(data);
-    window.alert('알람이 설정되었습니다.');
     if (window.ReactNativeWebView) {
       window.ReactNativeWebView.postMessage(
         JSON.stringify({
@@ -48,6 +47,7 @@ const AlarmSetter = ({
           time: `${dateData}`,
         }),
       );
+      return window.alert('알람이 설정되었습니다.');
     } else {
       window.alert('모바일이 아닙니다.');
     }
