@@ -1,11 +1,8 @@
 import { HOUR_DATA, MINUTE_DATA } from '@/common/constants';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Scrollbar, Autoplay } from 'swiper/modules';
-
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
 
 const AlarmSetter = ({
   onSetAlarm,
